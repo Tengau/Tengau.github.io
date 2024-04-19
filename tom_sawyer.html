@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tom Sawyer</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Tenzi Zhuoga</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="generic.html" class="active">Featured Projects</a></li>
+						<li><a href="elements.html">Contact</a></li>
+						<li><a href="elements.html">Resume</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Cup Stacking with Rethink Robotics Sawyer Collaborative Robot</h1>
+							<span class="image fit"><img src="images/pic_1.png" alt="" /></span>
+							<p>The Rethink Robotics Sawyer Collaborative Robot, a seven degree-of-freedom manipulator with a parallel jaw gripper was used to perform cup stacking. This problem required an understanding of operational space motion, state space motion, sampling, and redundancy resolution.</p>
+							<div class="column">
+								<img src="images/pic_2.png" alt="" style="width:100%">
+							</div>
+							<div class="column">
+								<img src="images/pic.png" alt="" style="width:100%">
+							</div>
+							<p>Operational Space Motion vs. State Space Motion: In the cup stacking problem, the motion control can be broken down into a series of joint space and operational space control. In joint space control, the start end-effector pose, desired midpoint end-effector pose and desired time points are used to generate a third-order polynomial trajectory. In cases where detailed end-effector motion is required (such as grasping and placing the cup), operational space control is used. The cup stacking problem was broken down into several steps: grasping and placing. Grasping can be performed with a joint space trajectory to a pose close to the cup, an operational space motion to approach the cup, and then a gripping motion with the parallel jaw gripper. Placing can be performed with an operational space motion to move the cup off the ground, a joint space motion to a pose above the desired position of the cup, and then an operational space motion to gently place the cup at the desired position.</p>
+							<p>Sampling: State space sampling is performed to find parameterized actions that satisfy intermediate and end joint constraints [<a href="https://ieeexplore.ieee.org/document/6225101">1</a>]. Sampling began witht he closest point from the end effector, and keeps on sampling until a collision free trajectory is achieved.</p>
+							<p>Redundancy Resolution of a 7-DOF arm: The extra DOF in the Sawyer was resolved using maximum velocity constraints for any joint velocity and time constraints for the start and end of the motion. The distance between the planned and actual joint angles were minimized and the distance of joints from their singularities were maximized. </p>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Tenzi Zhuoga. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
