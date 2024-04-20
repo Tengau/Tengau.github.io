@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Robot Delivery Service</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Tenzi Zhuoga</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html" class="active">Featured Projects</a></li>
+						<li><a href="elements.html">Contact</a></li>
+						<li><a href="elements.html">Resume</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Senior Capstone Project: Autonomous Delivery Robot</h1>
+							<span class="image fit"><img src="images/img_4882.jpg" alt="" /></span>
+							<h2>Project Overview</h2>
+							<h3>Collision Avoidance and Wayfinding</h3>
+							<p>The collision avoidance and wayfinding had two main goals, detecting obstacles and detecting clear lanes that the robot can follow and stay on it. To achieve this, three levels of sensors were used in order of priority as show below:</p>
+								<ul>
+									<li>Ultrasonic Distance Sensors: Highest priority obstacle detection sensors in
+										our project and detects distances closest to the robot. For efficiency and
+										speed, the 5V ultrasonic sensors are connected to an Arduino UNO R3 board
+										with a python program that collects the ultrasonic readings and sends them
+										out to the BeagleBone Blue via a USB connection.
+										</li>
+									<li>2D LiDAR: Detects obstacles in a 5m range around the robot. Range of
+										detection for this project was limited to 1.5m and to focus on obstacles
+										directly in front (30 degrees) of the robot to avoid stray signals. During each
+										measurement process, the laser radar emits a modulated infrared laser signal,
+										which is received by the optical vision acquisition system of the LiDAR after
+										being reflected by the target object.
+										</li>
+									<li> Webcam: Least priority detection sensor responsible for lane detection as
+										well as obstacle detection. Algorithm used relies on HSV (Hue Saturation
+										Value) which decides the path that the robot should take via color distinction.</li>
+								</ul>
+								<span class="image fit"><img src="images/webcam.png" alt="" /></span>
+							<h3>Navigation and Path Planning</h3>
+							<p>Responsible for taking a destination parameter from a user, the navigation and
+								path-planning nodes use that to orient the robot and cause it to move through a
+								predetermined path to arrive at that destination. The process is detailed in the
+								flowchart below:</p>
+								<ul>
+									<li><span class="image right"><img src="images/equations.png" alt="" /></span>Optical Encoders: Two E4T OEM Miniature Optical Encoders attached to the
+										shafts of the left and right motors.
+										These equations calculate the change in the x, y, and
+										heading of the robot from the change in the right and left
+										encoder readings.
+										</li>
+									<li>Compass Module: Built into the BeagleBone Blue, called the MPU-9250 chip.
+										It is a 9-axis Inertial and Measurement Unit (IMU) which contains an
+										accelerometer, gyroscope and magnetometer.
+										</li>
+									<li>GPS Module: Adafruit Ultimate GPS breakout-board with communication
+										enabled via UART. We parse the NMEA sentences and use the GPGGA
+										messages. 
+										</li>
+										<span class="image fit"><img src="images/path_planning.png" alt="" /></span>
+								</ul>
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Tenzi Zhuoga. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
