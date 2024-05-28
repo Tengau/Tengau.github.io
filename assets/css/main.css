@@ -2576,7 +2576,11 @@ input, select, textarea {
 			border-radius: 0.25em;
 			display: block;
 		}
-
+		.pics_in_a_row {
+			display: flex;
+			justify-content: center;
+  		align-items: center;
+		}
 		.image.left, .image.right {
 			max-width: 40%;
 		}

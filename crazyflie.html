@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Crazyflie</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Tenzi Zhuoga</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html" class="active">Featured Projects</a></li>
+						<li><a href="index.html">Contact</a></li>
+						<li><a href="elements.html">Resume</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Autonomous Visual Inertial Odometry based Quadcopter</h1>
+							<span class="image fit"><img src="images/quad_2.png" alt="" /></span>
+							<h2>Project Overview</h2>
+							<p>The task of autonomous VIO-based quadrotor control is divided into two parts. First, the trajectory should be planned and tracked accurately with the ground-truth statement of the robot. Second, the robot's state must be estimated given noisy sensor measurements. This project was performed in a simulated environment in python with the use of python libraries like Scipy and Numpy. </p>
+							<h3>Geometric Nonlinear Controller</h3>
+							<p><span class="image right"><img src="images/test1_graph.png" alt="" /></span>Starting from a PD controller equation, the four forces exerted by the quadrotor's motors was derived in a Geometric Nonlinear Controller. Controller gains K_p, K_d, K_R, and K_omega were tuned to create a stable quadrotor that could handle various trajectories.</p>
+							<h3>A* Search and Djikstra's Algorithm</h3>
+							<p>A modified A* search and Djikstra's Algorithm was implemented to hand big or infinite graphs (for trajectory spaces over long distances) with a Euclidean distance heuristic. While A* search calculated cost as the combination of the distance between the current node to the next node and the distance between the next node to the goal node, Djikstra's algorithm calculated cost as the distance between the current node and the next node.</p>
+							<h3>Path Pruning</h3>
+							<p>Various path pruning procedures were used to simplify the A* path:</p>
+							<ul>
+								<li>The Ramer Douglas Peucker Algorithm (also known as the iterative end-point fit algorithm) was implemented to prune a point-dense trajectory into a simplified trajectory.</li>
+								<li>After simplifying the trajectory using the RDP algorithm, an issue arose in which long stretches of flight caused the quadrotor to experience large errors in flight. To ammend this, midpoints were added into the trajectory by checking if there were adjacent pairs of points that were more than 3 meters apart. If there were, a midpoint was added.</li>
+							</ul>
+							<div class="column">
+								<img src="images/quad_1.png" alt="" style="width:100%">
+							</div>
+							<div class="column">
+								<img src="images/quad_2.png" alt="" style="width:100%">
+							</div>
+							<h3>Error State Kalman Filter</h3>
+							<ul>
+								<li>An Error State Kalman Filter (ESKF) was used to estimate the pose of a flying robotic platform usig information obtained from its onboard sensors. These sensors include an onboard inertial measurement unit (IMU) and an onboard stereo pair. </li>
+								<li>A 6-axis IMU was used, providing the acceleration and angular rate measurements. The gyroscope and accelerometer information from the IMU was combined using a complementary filter, whcih low-passes the accelerometer and high-passes the gyroscope measurements, which takes advantage of the accelerometer's innate ability ot not accumulate measurement bais and the gyroscope's ability to have low noise over short periods of time.</li>
+								<li>The pose of the quadrotor was estimated from stereo correspondences using a RANSAC based stereo odometry system. This was performed using the classic RANSAC algorithm of selecting n equations from the overconstrained linear system at random without replacement, solving for x using the Standard Least Squares formulation, determining the inliers with a tuned threshold value, retaining the solution with the largest number of inliers, and repeating until the largest inlier set is discovered. Given the proposed solution, we can determine the pose of the quadrotor.</li>
+							
+							
+						</ul>
+						</div>
+						
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Tenzi Zhuoga. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
